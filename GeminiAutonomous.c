@@ -1,3 +1,4 @@
+#include "GeminiConfiguration.c"
 #include "GeminiDrivetrain.c"
 #include "GeminiLift.c"
 #include "GeminiBucket.c"
