@@ -2,6 +2,7 @@
 #include "GeminiDrivetrain.c"
 #include "GeminiLift.c"
 #include "GeminiBucket.c"
+#include "GeminiSensors.c"
 
 #include "JoystickDriver.c"
 
