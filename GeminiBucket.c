@@ -1,5 +1,20 @@
 #pragma systemFile
 
+enum {  //actions that can be taken when changing the bucket position
+  nextPos = 1;
+  prevPos = 2;
+}
+
+enum {
+  posCollect = 1;
+  posStorage = 2;
+  posCarry   = 3;
+  posFloat   = 4;
+  posDump    = 5;
+}
+
+bucketCurrPos = posStorage;
+
 bucketCollect() {
   //set the bucket to collection position for scooping up blocks
 }
@@ -22,7 +37,7 @@ bucketDump() {
 
 int bucketPosition(int action) {
   //implements a state machine to transition betwen different positions
-  switch(currentPosition) {
+  switch(bucketCurrPos) {
     case posCollect:
       switch(action) {
         case nextPos:
