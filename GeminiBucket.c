@@ -20,13 +20,13 @@ bucketDump() {
   //set the bucket to the dumping position
 }
 
-bucketIncrementPosition(int value) {
+bucketIncrementAngle(int value) {
   //increment the current position by a given value
   //Servo[bucket] += value;
   //check for bounds
 }
 
-bucketDecrementPosition(int value) {
+bucketDecrementAngle(int value) {
   //decrements the current position by a given value
   //Servo[bucket] -= value;
   //check for bounds
