@@ -21,45 +21,60 @@ bucketDump() {
 }
 
 int bucketPosition(int action) {
-  //implements a state machine to transition betwen diferent positions
+  //implements a state machine to transition betwen different positions
   switch(currentPosition) {
-    case posFloat
+    case posCollect:
       switch(action) {
-        case nextPos
-        
-        case prevPos
-        
-        default
-        
-      }
-    case posDump
+        case nextPos:
+          break;
+        case prevPos:
+          break;
+        default:
+          //do nothing
+      } break;
+      
+    case posStorage:
       switch(action) {
-        case nextPos
-        
-        case prevPos
-        
-        default
-        
-      }
-    case posCollect
+        case nextPos:
+          break;
+        case prevPos:
+          break;
+        default:
+          //do nothing
+      } break;
+      
+      case posCarry:
+        switch(action) {
+         case nextPos:
+           break;
+          case prevPos:
+            break;
+          default:
+          //do nothing
+      } break;
+      
+    case posFloat:
       switch(action) {
-        case nextPos
-        
-        case prevPos
-        
-        default
-        
-      }
-    case posCarry
+        case nextPos:
+          break;
+        case prevPos:
+          break;
+        default:
+        //do nothing
+      } break;
+      
+    case posDump:
       switch(action) {
-        case nextPos
-        
-        case prevPos
-        
-        default
-        
-      }
-    default
+        case nextPos:
+          break;
+        case prevPos:
+          break;
+        default:
+          //do nothing
+      } break;
+      
+    default:
+      //do nothing
   }
 }
 
