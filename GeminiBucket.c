@@ -20,6 +20,49 @@ bucketDump() {
   //set the bucket to the dumping position
 }
 
+int bucketPosition(int action) {
+  //implements a state machine to transition betwen diferent positions
+  switch(currentPosition) {
+    case posFloat
+      switch(action) {
+        case nextPos
+        
+        case prevPos
+        
+        default
+        
+      }
+    case posDump
+      switch(action) {
+        case nextPos
+        
+        case prevPos
+        
+        default
+        
+      }
+    case posCollect
+      switch(action) {
+        case nextPos
+        
+        case prevPos
+        
+        default
+        
+      }
+    case posCarry
+      switch(action) {
+        case nextPos
+        
+        case prevPos
+        
+        default
+        
+      }
+    default
+  }
+}
+
 bucketIncrementAngle(int value) {
   //increment the current position by a given value
   //Servo[bucket] += value;
