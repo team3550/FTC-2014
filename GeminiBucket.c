@@ -1,33 +1,65 @@
 #pragma systemFile
 
-bucketCollect() {
-  //set the bucket to collection position for scooping up blocks
-}
+#ifndef __GEMINI_DRIVERS__
+#include "gemini-drivers.c"
+#endif
 
-bucketStorage() {
+#define BUCKETLEFTSTORAGE 255;
+#define BUCKETLEFTCOLLECT 255;
+#define BUCKETLEFTDUMP 255;
+
+#define BUCKETRIGHTSTORAGE 255;
+#define BUCKETRIGHTCOLLECT 255;
+#define BUCKETRIGHTDUMP 255;
+
+
+//========== Prototypes ==========
+void bucketStorage();
+void bucketCollect();
+void bucketFloat();
+void bucketDump();
+void bucketIncrementPosition();
+void bucketDecrementPosition();
+void bucketTrimUp();
+void bucketTrimDown();
+
+//========== Variables ==========
+int bucketTrim = 0;
+
+//========== Functions ==========
+void bucketStorage() {
   //set the bucket to the storage position
 }
 
-bucketCarry() {
-  //set the bucket to the carrying position to keep blocks in
+void bucketCollect() {
+  //set the bucket to collection position for scooping up blocks
 }
 
-bucketFloat() {
+void bucketFloat() {
   //turn off power to the servo motor to allow the bucket to float
 }
 
-bucketDump() {
+void bucketDump() {
   //set the bucket to the dumping position
 }
 
-bucketIncrementPosition(int value) {
+void bucketIncrementPosition(int value) {
   //increment the current position by a given value
   //Servo[bucket] += value;
   //check for bounds
 }
 
-bucketDecrementPosition(int value) {
+void bucketDecrementPosition(int value) {
   //decrements the current position by a given value
   //Servo[bucket] -= value;
   //check for bounds
+}
+
+void bucketTrimUp() {
+  //increments trim value
+  trim += 5;
+}
+void bucketTrimDown() {
+  //decrements trim value
+  trim -= 5;
 }
