@@ -6,7 +6,7 @@ void displayMenuItems(string items[]) {
 }
 */
 
-int displaySelectMenuItems(string items[]) {
+int displaySelectMenuItems( items[]) {
   displayMenuItems(string items[]);
   //let the user select a specific item
   return itemNumber;

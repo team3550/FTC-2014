@@ -1,3 +1,5 @@
+#pragma systemFile
+
 #define BUCKET_LEFT_SERVO
 #define BUCKET_RIGHT_SERVO
 #define LIFT_MOTOR
