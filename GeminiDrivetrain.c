@@ -1,5 +1,18 @@
 #pragma systemFile
 
+#ifndef __GEMINI_DRIVERS__
+#include "gemini-drivers.c"
+#endif
+
+//========== DEFINES ==========
+
+//========== prototypes ==========
+
+//========== variables ==========
+
+//========== functions ==========
+
+
 setLeftSideSpeed(int speed) {
   //need to add code to set motors to speed
   motor[leftDriveA] = speed;
