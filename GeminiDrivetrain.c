@@ -1,8 +1,6 @@
 #pragma systemFile
 
-#ifndef __GEMINI_DRIVERS__
 #include "gemini-drivers.h"
-#endif
 
 //========== DEFINES ==========
 
@@ -12,51 +10,37 @@
 
 //========== functions ==========
 
-
-void setLeftSideSpeed(int speed) {
-  //need to add code to set motors to speed
-  motor[leftDriveA] = speed;
-  motor[leftDriveB] = speed;
-  motor[leftDriveC] = speed;
-}
-
-void setRightSideSpeed(int speed) {
-  //need to add code to set motors to speed
-  motor[rightDriveA] = speed;
-  motor[rightDriveB] = speed;
-  motor[rightDriveC] = speed;
-}
-
-void setLeftSidePower(int power) {
-  //need to add code to set motors to power
-  motor[leftDriveA] = power;
-  motor[leftDriveB] = power;
-  motor[leftDriveC] = power;
-}
-
-void setRightSidePower(int power) {
-  //need to add code to set motors to power
-  motor[rightDriveA] = power;
-  motor[rightDriveB] = power;
-  motor[rightDriveC] = power;
-}
-
-void driveForwardSpeed(int speed) {
-  setLeftSideSpeed(speed);
-  setRightSideSpeed(speed);
+void driveMotors(int leftPower, int rightPower) {
+  motor[LeftFront] = leftPower;
+  motor[LeftBack] = leftPower;
+  motor[RightFront] = rightPower;
+  motor[RightBack] = rightPower;
 }
 
 void driveForwardPower(int power) {
-  setLeftSidePower(power);
-  setRightSidePower(power);
+  driveMotors(power, power);
 }
 
-void driveBackwardSpeed(int speed) {
-  setLeftSideSpeed(speed);
-  setRightSideSpeed(speed);
+void spinLeftPower(int power) {
+  driveMotors(-power, power);
 }
 
-void driveBackwardPower(int power) {
-  setLeftSidePower(power);
-  setRightSidePower(power);
+void spinRightPower(int power) {
+  driveMotors(power, -power);
+}
+
+void swingLeftPower(int power) {
+  if(power > 0) {
+    driveMotors(0, power);
+  } else {
+    driveMotors(power, 0);
+  }
+}
+
+void swingRightPower(int power) {
+  if(power > 0) {
+    driveMotors(power, 0);
+  } else {
+    driveMotors(0, power);
+  }
 }
