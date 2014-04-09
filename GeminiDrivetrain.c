@@ -1,12 +1,11 @@
 #pragma systemFile
 
-#include "gemini-drivers.h"
-
 //========== DEFINES ==========
 
 //========== prototypes ==========
 
 //========== variables ==========
+int drivePower = 100;
 
 //========== functions ==========
 
@@ -43,4 +42,30 @@ void swingRightPower(int power) {
   } else {
     driveMotors(0, power);
   }
+}
+
+void calculateDrive(int xAxis, int yAxis) {
+  //deadband
+  if (abs(xAxis) < 10) {
+    xAxis = 0;
+  }
+  if (abs(yAxis) < 10) {
+    yAxis = 0;
+  }
+
+  //motor Scaling
+  xAxis = (int)(xAxis*drivePower/127);
+  yAxis = (int)(yAxis*drivePower/127);
+
+  int leftVal = yAxis + xAxis;
+  int rightVal = yAxis - xAxis;
+  int leftOverflow = 0;
+  int rightOverflow = 0;
+
+
+  driveMotors(leftVal, rightVal);
+}
+
+void setDrivePower(int power) {
+  drivePower = power;
 }

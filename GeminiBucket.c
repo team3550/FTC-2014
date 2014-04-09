@@ -1,9 +1,5 @@
 #pragma systemFile
 
-#ifndef __GEMINI_DRIVERS__
-#include "gemini-drivers.c"
-#endif
-
 #define BUCKETLEFTSTORAGE 255;
 #define BUCKETLEFTCOLLECT 255;
 #define BUCKETLEFTDUMP 255;
