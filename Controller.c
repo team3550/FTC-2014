@@ -1,3 +1,5 @@
+#pragma systemFile
+
 //========== includes ==========
 #include "JoystickDriver.c"
 
@@ -15,13 +17,69 @@
 #define BUTTON_LSTICK 11
 #define BUTTON_RSTICK 12
 
+#define CONTROLLER_1 1
+#define CONTROLLER_2 2
+
 //========== variables ==========
 bool robotEnabled = false;
+short joy1_Buttons_Last = 0;
+short joy2_Buttons_Last = 0;
 
 //========== declarations ==========
 void updateControllers();
-//int Controller1GetDirection();
+bool ControllerButtonPressed(int button, int controller);
+bool ControllerButtonReleased(int button, int controller);
+bool ControllerButtonDown(int button, int controller);
+
 //========== definitions ==========
 void updateControllers() {
+  joy1_Buttons_Last = joystick.joy1_Buttons;
+  joy2_Buttons_Last = joystick.joy2_Buttons;
+  getJoystickSettings(joystick);
   robotEnabled = !joystick.StopPgm;
+}
+
+bool ControllerButtonPressed(int button, int controller) {
+  bool isPressed = false;
+  bool wasPressed = false;
+  switch(controller) {
+    case 1 :
+      isPressed = ( ((joystick.joy1_Buttons)&(1 << (button-1))) != 0);
+      wasPressed = ( ((joy1_Buttons_Last)&(1 << (button-1))) != 0);
+      break;
+    case 2 :
+      isPressed = ( ((joystick.joy2_Buttons)&(1 << (button-1))) != 0);
+      wasPressed = ( ((joy2_Buttons_Last)&(1 << (button-1))) != 0);
+      break;
+  }
+  return ((isPressed == true) && (wasPressed == false));
+}
+
+bool ControllerButtonReleased(int button, int controller) {
+  bool isPressed = false;
+  bool wasPressed = false;
+  switch(controller) {
+    case 1 :
+      isPressed = ( ((joystick.joy1_Buttons)&(1 << (button-1))) != 0);
+      wasPressed = ( ((joy1_Buttons_Last)&(1 << (button-1))) != 0);
+      break;
+    case 2 :
+      isPressed = ( ((joystick.joy2_Buttons)&(1 << (button-1))) != 0);
+      wasPressed = ( ((joy2_Buttons_Last)&(1 << (button-1))) != 0);
+      break;
+  }
+  return ((isPressed == false) && (wasPressed == true));
+}
+
+bool ControllerButtonDown(int button, int controller) {
+  bool isPressed = false;
+  switch(controller) {
+    case 1:
+      isPressed = ( ((joystick.joy1_Buttons)&(1 << (button-1))) != 0);
+      break;
+    case 2:
+      isPressed = ( ((joystick.joy2_Buttons)&(1 << (button-1))) != 0);
+      break;
+  }
+  return isPressed;
 }

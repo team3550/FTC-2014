@@ -39,10 +39,20 @@ task main()
     calculateDrive(joystick.joy1_x1, joystick.joy1_y1);
 
     //TODO: change to event based
-    if(joy1Btn(BUTTON_LB)) {
+    if(ControllerButtonPressed(BUTTON_LB, CONTROLLER_1)) {
       setDrivePower(30);
-    } else {
+    } else if(ControllerButtonReleased(BUTTON_LB, CONTROLLER_1)) {
       setDrivePower(100);
+    }
+
+    if(ControllerButtonPressed(BUTTON_A, CONTROLLER_1)) {
+      PlayImmediateTone(2800, 4);
+      writeDebugStreamLine("Button event trigger: pressed");
+    }
+
+    if(ControllerButtonReleased(BUTTON_A, CONTROLLER_1)) {
+      PlayImmediateTone(1400, 4);
+      writeDebugStreamLine("Button Released");
     }
   }
 }
