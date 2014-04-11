@@ -10,6 +10,8 @@
 
 
 //========== Prototypes ==========
+void bucketInitialize();
+
 void bucketStorage();
 void bucketCollect();
 void bucketFloat();
@@ -23,6 +25,11 @@ void bucketTrimDown();
 int bucketTrim = 0;
 
 //========== Functions ==========
+void bucketInitialize() {
+  bucketStorage();
+  writeDebugStreamLine("Initialized: Bucket");
+}
+
 void bucketStorage() {
   //set the bucket to the storage position
 }
