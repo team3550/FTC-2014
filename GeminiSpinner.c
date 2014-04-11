@@ -8,6 +8,8 @@
 #define SPINNER_TIME_EIGTH_TURN 20
 
 //========== prototypes ==========
+void spinnerInitialize();
+
 void spinnerIn();
 void spinnerOut();
 void spinnerSpin(int power);
@@ -21,6 +23,12 @@ void spinnerAlignCClockwise();
 
 
 //========== functions ==========
+void spinnerInitialize() {
+  spinnerStop();
+  spinnerIn();
+  writeDebugStreamLine("Initialized: Spinner");
+}
+
 void spinnerIn() {
   servo[Turntable] = SPINNER_POS_IN;
 }
