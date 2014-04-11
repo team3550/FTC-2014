@@ -1,5 +1,8 @@
 #pragma systemFile
 
+#define BucketLeft servo3
+#define BucketRight servo1
+
 //========== Prototypes ==========
 void bucketStorage();
 void bucketCollect();
