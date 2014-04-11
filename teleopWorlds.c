@@ -45,12 +45,12 @@ task main()
       setDrivePower(100);
     }
 
-    if(ControllerButtonPressed(BUTTON_A, CONTROLLER_1)) {
+    if(ControllerHatPressed(BUTTON_HAT_UP, CONTROLLER_1)) {
       PlayImmediateTone(2800, 4);
       writeDebugStreamLine("Button event trigger: pressed");
     }
 
-    if(ControllerButtonReleased(BUTTON_A, CONTROLLER_1)) {
+    if(ControllerHatReleased(BUTTON_HAT_UP, CONTROLLER_1)) {
       PlayImmediateTone(1400, 4);
       writeDebugStreamLine("Button Released");
     }
