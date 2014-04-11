@@ -1,11 +1,13 @@
 #pragma systemFile
 
 void RSLOn() {
+  motor[rsl] = 100;
   //add to Super Pro IO bits
   //update Super Pro
 }
 
 void RSLOff() {
+  motor[rsl] = 0;
   //add to super pro IO bits
   //reigster |= 10000
   //update Super Pro

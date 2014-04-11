@@ -1,4 +1,9 @@
-#pragma systemFile
+#pragma systemFile\
+
+#ifndef __BRAKE_MOTORS__
+  #define __BRAKE_MOTORS__
+  bFloatDuringInactiveMotorPWM = false;
+#endif
 
 #define BUCKETLEFTSTORAGE 255;
 #define BUCKETLEFTCOLLECT 255;
@@ -14,8 +19,8 @@ void bucketStorage();
 void bucketCollect();
 void bucketFloat();
 void bucketDump();
-void bucketIncrementPosition();
-void bucketDecrementPosition();
+void bucketIncrementPosition(int value);
+void bucketDecrementPosition(int value);
 void bucketTrimUp();
 void bucketTrimDown();
 
@@ -53,9 +58,9 @@ void bucketDecrementPosition(int value) {
 
 void bucketTrimUp() {
   //increments trim value
-  trim += 5;
+  bucketTrim += 5;
 }
 void bucketTrimDown() {
   //decrements trim value
-  trim -= 5;
+  bucketTrim -= 5;
 }
