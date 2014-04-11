@@ -5,6 +5,7 @@
 
 #define SPINNER_POS_IN 255
 #define SPINNER_POS_OUT 255
+#define SPINNER_TIME_EIGTH_TURN 20
 
 //========== prototypes ==========
 void spinnerIn();
@@ -46,10 +47,14 @@ void spinnerSpinCClockwise() {
 
 void spinnerAlignClockwise() {
   spinnerSpin(15);
+  wait1Msec(SPINNER_TIME_EIGTH_TURN);
+  spinnerStop();
 }
 
 void spinnerAlignCClockwise() {
   spinnerSpin(-15);
+  wait1Msec(SPINNER_TIME_EIGTH_TURN);
+  spinnerStop();
 }
 
 
