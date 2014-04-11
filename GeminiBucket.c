@@ -1,66 +1,98 @@
-#pragma systemFile\
-
-#ifndef __BRAKE_MOTORS__
-  #define __BRAKE_MOTORS__
-  bFloatDuringInactiveMotorPWM = false;
-#endif
-
-#define BUCKETLEFTSTORAGE 255;
-#define BUCKETLEFTCOLLECT 255;
-#define BUCKETLEFTDUMP 255;
-
-#define BUCKETRIGHTSTORAGE 255;
-#define BUCKETRIGHTCOLLECT 255;
-#define BUCKETRIGHTDUMP 255;
-
+#pragma systemFile
 
 //========== Prototypes ==========
 void bucketStorage();
 void bucketCollect();
 void bucketFloat();
 void bucketDump();
-void bucketIncrementPosition(int value);
-void bucketDecrementPosition(int value);
+void bucketIncrementState();
+void bucketDecrementState();
 void bucketTrimUp();
 void bucketTrimDown();
 
+
 //========== Variables ==========
-int bucketTrim = 0;
+int trim = 0;
+
+typedef enum bucketStates {
+  bucketStateStorage = 0,
+  bucketStateCollect = 1,
+  bucketStateFloat = 2,
+  bucketStateDump = 3,
+} bucketStates;
+
+bucketStates bucketState = bucketStateStorage;
+
+int bucketLeftStorage = 228;
+int bucketLeftCollect = 100;
+int bucketLeftDump    = 30;
+
+int bucketRightStorage = 13;
+int bucketRightCollect = 140;
+int bucketRightDump    = 219;
 
 //========== Functions ==========
-void bucketStorage() {
+void bucketStorage() { //TODO: FIX DE SERVO CALLINGS
   //set the bucket to the storage position
+  servo[BucketLeft] = bucketLeftStorage + trim;
+  servo[BucketRight] = bucketRightStorage - trim;
+  bucketState = bucketStateStorage;
 }
 
 void bucketCollect() {
   //set the bucket to collection position for scooping up blocks
+  servo[BucketLeft] = bucketLeftCollect + trim;
+  servo[BucketRight] = bucketRightCollect - trim;
+  bucketState = bucketStateCollect;
 }
 
 void bucketFloat() {
   //turn off power to the servo motor to allow the bucket to float
+  bucketState = bucketStateFloat;
 }
 
 void bucketDump() {
   //set the bucket to the dumping position
+  servo[BucketLeft] = bucketLeftDump + trim;
+  servo[BucketRight] = bucketRightDump - trim;
+  bucketState = bucketStateDump;
 }
 
-void bucketIncrementPosition(int value) {
-  //increment the current position by a given value
-  //Servo[bucket] += value;
-  //check for bounds
+void bucketIncrementState() {
+  if (bucketState == bucketStateStorage) {
+    bucketStorage();
+  } else if (bucketState == bucketStateCollect) {
+    bucketStorage();
+  } else if (bucketState == bucketStateDump) {
+    bucketCollect();
+  } else {}
+  writeDebugStreamLine("Bucket State: %d", bucketState);
 }
 
-void bucketDecrementPosition(int value) {
-  //decrements the current position by a given value
-  //Servo[bucket] -= value;
-  //check for bounds
+void bucketDecrementState() {
+  if (bucketState == bucketStateStorage) {
+    bucketCollect();
+  } else if (bucketState == bucketStateCollect) {
+    bucketDump();
+  } else if (bucketState == bucketStateDump) {
+    bucketDump();
+  }
+  writeDebugStreamLine("Bucket State: %d", bucketState);
 }
 
 void bucketTrimUp() {
   //increments trim value
-  bucketTrim += 5;
+  byte leftHolder = servo[BucketLeft];
+  byte rightHolder = servo[BucketRight];
+  trim += 5;
+  servo[BucketLeft] = leftHolder + trim;
+  servo[BucketRight] = rightHolder - trim;
 }
 void bucketTrimDown() {
   //decrements trim value
-  bucketTrim -= 5;
+  byte leftHolder = servo[BucketLeft];
+  byte rightHolder = servo[BucketRight];
+  trim -= 5;
+  servo[BucketLeft] = leftHolder + trim;
+  servo[BucketRight] = rightHolder - trim;
 }

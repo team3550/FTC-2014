@@ -20,6 +20,7 @@
 #include "Controller.c"
 #include "GeminiDrivetrain.c"
 #include "GeminiLift.c"
+#include "GeminiBucket.c"
 
 void initializeRobot()
 {
@@ -37,8 +38,16 @@ task main()
   {
     updateControllers();
 
+    //========== handle drive ==========
     calculateDrive(joystick.joy1_x1, joystick.joy1_y1);
 
+    if (ControllerButtonPressed(BUTTON_LB, CONTROLLER_1)) {
+      setDrivePower(30);
+    } else if (ControllerButtonReleased(BUTTON_LB, CONTROLLER_1)) {
+      setDrivePower(100);
+    }
+
+    //========== handle lift ==========
     if (ControllerButtonDown(BUTTON_X, CONTROLLER_1)) {
       liftBottomPositionSafety();
     } else if (ControllerButtonDown(BUTTON_Y, CONTROLLER_1)) {
@@ -49,12 +58,14 @@ task main()
       liftUpSpeed(joystick.joy1_y2);
     }
 
-    if (ControllerButtonPressed(BUTTON_LB, CONTROLLER_1)) {
-      setDrivePower(30);
-    } else if (ControllerButtonReleased(BUTTON_LB, CONTROLLER_1)) {
-      setDrivePower(100);
+    //========== handle bucket ==========
+    if (ControllerButtonPressed(BUTTON_RB, CONTROLLER_1)) {
+      bucketIncrementState();
+    } else if (ControllerButtonPressed(BUTTON_RT, CONTROLLER_1)) {
+      bucketDecrementState();
     }
 
+    //========== debug beep ==========
     if (ControllerButtonDown(BUTTON_LSTICK, CONTROLLER_1)) {
       PlayImmediateTone(4186, 1);
     }

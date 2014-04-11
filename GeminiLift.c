@@ -4,6 +4,7 @@
 void liftUpSpeed(int speed);
 void liftDownSpeed(int speed);
 void liftStop();
+void liftResetPosition();
 void liftBottomPositionSafety();
 void liftDumpPositionSafety();
 void liftHangPositionSafety();
@@ -24,6 +25,10 @@ void liftDownSpeed(int speed) {
 void liftStop() {
   //stops the lift
   motor[Lift] = 0;
+}
+
+void liftResetPosition() {
+  nMotorEncoder[Lift] = 0;
 }
 
 void liftBottomPositionSafety() {
