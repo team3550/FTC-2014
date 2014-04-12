@@ -42,7 +42,7 @@ void spinnerSpin(int power) {
 }
 
 void spinnerStop() {
-  motorSpinner = 0;
+  motor[Spinner] = 0;
 }
 
 void spinnerSpinClockwise() {
@@ -64,7 +64,3 @@ void spinnerAlignCClockwise() {
   wait1Msec(SPINNER_TIME_EIGTH_TURN);
   spinnerStop();
 }
-
-
-
-
