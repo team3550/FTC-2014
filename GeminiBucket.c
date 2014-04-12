@@ -4,6 +4,8 @@
 #define BucketRight servo1
 
 //========== Prototypes ==========
+void bucketInitialize();
+
 void bucketStorage();
 void bucketCollect();
 void bucketFloat();
@@ -35,7 +37,12 @@ int bucketRightCollect = 140;
 int bucketRightDump    = 219;
 
 //========== Functions ==========
-void bucketStorage() { //TODO: FIX DE SERVO CALLINGS
+void bucketInitialize() {
+  bucketStorage();
+  writeDebugStreamLine("Initialized: Bucket");
+}
+
+void bucketStorage() {
   //set the bucket to the storage position
   servo[BucketLeft] = bucketLeftStorage + trim;
   servo[BucketRight] = bucketRightStorage - trim;
