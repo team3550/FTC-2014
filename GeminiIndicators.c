@@ -1,8 +1,14 @@
 #pragma systemFile
 
-//========== defines ==========
+#include "drivers/hitechnic-superpro.h"
 
+//========== defines ==========
+#define HTSPBDOutMask 0xFF  //TODO: update this number to have the appropriate DOut mask
+#define RSLOnMask 0x01;  //0b00000001
+#define RSLOffMask 0xFE; //0b11111110
 //========== prototypes ==========
+void IndicatorsInitialize();
+
 void RSLOn();
 void RSLOff();
 void RSLBlinkTeleop();
@@ -12,20 +18,25 @@ void RSLBlinkLowBattery();
 void RSLBlinkError();
 
 //========== variables ==========
-
+byte HTSPBDOut = 0x00;
 //========== functions ==========
+
+void IndicatorsInitialize() {
+  HTSPBsetupIO(HTSPB, HTSPBDOutMask);
+}
 
 void RSLOn() {
   motor[rsl] = 100;
-  //add to Super Pro IO bits
-  //update Super Pro
+  //Update Super Pro IO bits
+  HTSPBDOut |= RSLOnMask;
+  HTSPBwriteIO(HTSPB, HTSPBDOut);
 }
 
 void RSLOff() {
   motor[rsl] = 0;
-  //add to super pro IO bits
-  //reigster |= 10000
   //update Super Pro
+  HTSPBDOut &= RSLOffMask;
+  HTSPBwriteIO(HTSPB, HTSPBDOut);
 }
 
 void RSLBlinkTeleop() {
