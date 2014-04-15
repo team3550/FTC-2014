@@ -5,11 +5,11 @@
 //========== prototypes ==========
 void RSLOn();
 void RSLOff();
-void RSLTeleopBlink();
-void RSLAutonomousBlink();
-void RSLDisabledBlink();
-void RSLLowBatteryBlink()
-void RSLErrorBlink();
+void RSLBlinkTeleop();
+void RSLBlinkAutonomous();
+void RSLBlinkDisabled();
+void RSLBlinkLowBattery()
+void RSLBlinkError();
 
 //========== variables ==========
 
