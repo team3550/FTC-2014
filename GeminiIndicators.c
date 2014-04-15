@@ -8,7 +8,7 @@ void RSLOff();
 void RSLBlinkTeleop();
 void RSLBlinkAutonomous();
 void RSLBlinkDisabled();
-void RSLBlinkLowBattery()
+void RSLBlinkLowBattery();
 void RSLBlinkError();
 
 //========== variables ==========
@@ -28,34 +28,34 @@ void RSLOff() {
   //update Super Pro
 }
 
-void RSLTeleopBlink() {
+void RSLBlinkTeleop() {
   RSLOn();
   wait1Msec(800);
   RSLOff();
   wait1Msec(200);
 }
 
-void RSLAutonomousBlink(){
+void RSLBlinkAutonomous(){
   RSLOn();
   wait1Msec(1000);
   RSLOff();
 }
 
-void RSLDisabledBlink() {
+void RSLBlinkDisabled() {
   RSLOn();
   wait1Msec(500);
   RSLOff();
   wait1Msec(500);
 }
 
-void RSLLowBatteryBlink() {
+void RSLBlinkLowBattery() {
   RSLOn();
   wait1Msec(200);
   RSLOff();
   wait1Msec(800);
 }
 
-void RSLErrorBlink() {
+void RSLBlinkError() {
   RSLOn();
   wait1Msec(250);
   RSLOff();
