@@ -1,7 +1,16 @@
 #pragma systemfile
 
 //========== defines ==========
+#define PTO     servo2
+#define Ratchet servo5
 
+#define PTO_Position_Engaged        86
+#define PTO_Position_Disengaged     126
+
+#define Ratchet_Position_Engaged    170
+#define Ratchet_Position_Disengaged 255
+#define Ratchet_Time_Lock           250
+#define Ratchet_Time_Unlock         250
 //========== prototypes ==========
 void hangingInitialize();
 
