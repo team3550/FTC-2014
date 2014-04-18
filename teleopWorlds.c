@@ -21,12 +21,19 @@
 #include "GeminiDrivetrain.c"
 #include "GeminiLift.c"
 #include "GeminiBucket.c"
+#include "GeminiSpinner.c"
 #include "GeminiFlipper.c"
 #include "GeminiHanging.c"
+#include "GeminiIndicators.c"
 
 void initializeRobot()
 {
   bFloatDuringInactiveMotorPWM = false;
+  bucketInitialize();
+  spinnerInitialize();
+  flipperInitialize();
+  hangingInitialize();
+  IndicatorsInitialize();
   return;
 }
 
