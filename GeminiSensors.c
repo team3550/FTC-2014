@@ -9,6 +9,9 @@
 #include "GeminiGyro.c"
 #endif
 
+#ifndef __HTIRS2_H__
+#include "drivers/hitechnic-irseeker-v2.h"
+
 #ifndef __LEGOLS_H__
 #include "drivers/lego-light.h"
 #endif
@@ -22,26 +25,27 @@
 //========== Prototypes ==========
 int sensorsUltrasonicGetDistance();
 
-word sensorsIRGetDirection();
+int sensorsIRGetDirection();
 
-word sensorsLightGetReflected();
+int sensorsLightGetReflected();
 void sensorsLightLightOn();
 void sensorsLightLightOff();
 
 //========== Variables ==========
 const tMUXSensor lightMUX = msensor_S3_4; //TODO: update the sensor numbers
 const tMUXSensor sonarMUX = msensor_S3_1; //TODO: update the sensor numbers
+const tMUXSensor IRMUX = msensor_S3_1;    //TODO: update the sensor numbers
 
 //========== Functions ==========
 int sensorsUltrasonicGetDistance() {
   return USreadDist(sonarMUX);
 }
 
-word sensorsIRGetDirection() {
-
+int sensorsIRGetDirection() {
+  return HTIRS2readACDir(IRMUX);
 }
 
-word sensorsLightGetReflected() {
+int sensorsLightGetReflected() {
   return LSvalRaw(lightMUX);
 }
 
