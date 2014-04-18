@@ -1,8 +1,16 @@
 #pragma systemfile
 #define _Gemini_Sensors_
 
+#ifndef __HTSMUX_H__
+#include "drivers/hitechnic-sensormux.h"
+#endif
+
 #ifndef _Gemini_Gyro_
 #include "GeminiGyro.c"
+#endif
+
+#ifndef __LEGOLS_H__
+#include "drivers/lego-light.h"
 #endif
 
 //========== Defines ==========
@@ -13,14 +21,32 @@ word sensorsUltrasonicGetDistance();
 word sensorsIRGetDirection();
 
 word sensorsLightGetReflected();
+void sensorsLightLightOn();
+void sensorsLightLightOff();
 
 //========== Variables ==========
+const tMUXSensor lightMUX = msensor_S3_4;
 
 //========== Functions ==========
+word sensorsUltrasonicGetDistance() {
 
+}
 
+word sensorsIRGetDirection() {
 
+}
 
+word sensorsLightGetReflected() {
+
+}
+
+void sensorsLightLightOn(){
+  LSsetActive(lightMUX);
+}
+
+void sensorsLightLightOff() {
+
+}
 
 //=========== Old Stuff ==========
 
