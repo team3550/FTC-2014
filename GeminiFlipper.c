@@ -17,9 +17,9 @@ void flipperDump();
 void flipperDumpSlow();
 
 //========== variables ==========
-byte flipperPositionStorage = 12;
-byte flipperPositionReady = 70;
-byte flipperPositionDump = 190;
+ubyte flipperPositionStorage = 12;
+ubyte flipperPositionReady = 70;
+ubyte flipperPositionDump = 190;
 
 //========== functions ==========
 void flipperInitialize() {  //Initialize the flipper for driving
