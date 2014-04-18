@@ -16,6 +16,10 @@ void driveMotors(int leftPower, int rightPower) {
   motor[RightBack] = rightPower;
 }
 
+void driveStop() {
+  driveForwardPower(0);
+}
+
 void driveForwardPower(int power) {
   driveMotors(power, power);
 }
