@@ -2,10 +2,10 @@
 
 
 //========== defines ==========
-#define NXT_BUTTON_ENTER  2
+#define NXT_BUTTON_ENTER  3
 #define NXT_BUTTON_LEFT   2
-#define NXT_BUTTON_RIGHT  2
-#define NXT_BUTTON_BACK   2
+#define NXT_BUTTON_RIGHT  1
+#define NXT_BUTTON_BACK   0
 
 #define ARRAYLENGTH(a) (sizeof(a)/sizeof(a[0]))
 
@@ -39,7 +39,7 @@ void promptTimeDelay(int maxTime) {
       } else {
         autoDelayTime = 0;
       }
-    } else if ((nNxtButtonPressed == NXT_BUTTON_LEFT) && (nNxtButtonPressedOld != NXT_BUTTON_LEFT)) {
+    } else if ((nNxtButtonPressed == NXT_BUTTON_RIGHT) && (nNxtButtonPressedOld != NXT_BUTTON_RIGHT)) {
       if ((autoDelayTime + autoDelayTimeStep) <= maxTime) {
         autoDelayTime += autoDelayTimeStep;
       } else {
@@ -47,5 +47,26 @@ void promptTimeDelay(int maxTime) {
       }
     }
     nxtDisplayCenteredTextLine(6, "%f Sec.", (autoDelayTime/1000));
+  }
+}
+
+void promptAutonomousMode() {
+  eraseDisplay();
+
+  int nNxtButtonPressedOld = -1;
+  int index = 0;
+  while (nNxtButtonPressed != NXT_BUTTON_ENTER) {
+    if ((nNxtButtonPressed == NXT_BUTTON_LEFT) && (nNxtButtonPressedOld != NXT_BUTTON_LEFT)) {
+      if (index >= 1) {
+       index -= 1;
+      }
+    } else if ((nNxtButtonPressed == NXT_BUTTON_RIGHT) && (nNxtButtonPressedOld != NXT_BUTTON_RIGHT)) {
+      if (index <= (ARRAYLENGTH(autoModeOptions)-1)) {
+        index += 1;
+      }
+    }
+
+    autoMode = autoModeOptions[index];
+    nxtDisplayCenteredTextLine(2, "%s", autoMode);
   }
 }
