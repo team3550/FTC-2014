@@ -16,7 +16,7 @@ void  sensorsGyroStartIntegrateTask();
 void  sensorsGyroStopIntegrateTask();
 
 //========== variables ==========
-bool  isGyroIntegrationTaskRunning = false;
+bool  isGyroIntegrateTaskRunning = false;
 float gyroHeading = 0;
 float gyroOffset = 0;
 float gyroDriftRate = 0;
@@ -93,10 +93,10 @@ void sensorsGyroResetHeading() {
 
 task sensorsGyroIntegrateTask() {
   isGyroIntegrateTaskRunning = true;
-  while(isGyroIntegrationTaskRunning != false) {
+  while(isGyroIntegrateTaskRunning != false) {
     sensorsGyroIntegrate();
   }
- isGyroIntegrationTaskRunning = false;
+ isGyroIntegrateTaskRunning = false;
 }
 
 void sensorsGyroStartIntegrateTask() {
@@ -104,5 +104,5 @@ void sensorsGyroStartIntegrateTask() {
 }
 
 void sensorsGyroStopIntegrateTask() {
-  isGyroIntegrationTaskRunning = false;
+  isGyroIntegrateTaskRunning = false;
 }
