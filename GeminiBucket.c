@@ -1,6 +1,7 @@
 #pragma systemFile
 #define _Gemini_Bucket_
 
+//========== Defines ==========
 #define BucketLeft servo3
 #define BucketRight servo1
 
