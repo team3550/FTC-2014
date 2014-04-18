@@ -37,7 +37,7 @@ word sensorsIRGetDirection() {
 }
 
 word sensorsLightGetReflected() {
-
+  LSvalRaw(lightMUX);
 }
 
 void sensorsLightLightOn(){
@@ -45,7 +45,7 @@ void sensorsLightLightOn(){
 }
 
 void sensorsLightLightOff() {
-  LSSetInactive(lightMUX);
+  LSsetInactive(lightMUX);
 }
 
 //=========== Old Stuff ==========
