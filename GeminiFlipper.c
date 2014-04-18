@@ -20,7 +20,7 @@ byte flipperPositionDump = 255;
 
 //========== functions ==========
 void flipperInitialize() {  //Initialize the flipper for driving
-
+  flipperStorage();
 }
 
 void flipperToPosition(byte pos) {  //puts the flipper servo at a specific position
