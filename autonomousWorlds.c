@@ -1,5 +1,6 @@
 #pragma config(Hubs,  S4, HTMotor,  HTMotor,  HTServo,  HTMotor)
 #pragma config(Sensor, S1,     HTGyro,         sensorAnalogInactive)
+#pragma config(Sensor, S3,     HTSMUX,              sensorI2CCustom)
 #pragma config(Motor,  motorA,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorB,           ,             tmotorNXT, openLoop)
 #pragma config(Motor,  motorC,          rsl,           tmotorNXT, openLoop, encoder)
