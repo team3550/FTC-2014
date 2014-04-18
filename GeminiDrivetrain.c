@@ -4,6 +4,18 @@
 //========== DEFINES ==========
 
 //========== prototypes ==========
+void driveInitialize();
+
+void driveMotors(int leftPower, int rightPower);
+void driveStop();
+void driveForwardPower(int power);
+void driveSpinLeftPower(int power);
+void driveSpinRightPower(int power);
+void driveSwingLeftPower(int power);
+void driveSwingRightPower(int power);
+
+void calculateDrive(int xAxis, int yAxis);
+void driveSetPower(int power);
 
 //========== variables ==========
 int drivePower = 100;
@@ -25,15 +37,15 @@ void driveForwardPower(int power) {
   driveMotors(power, power);
 }
 
-void spinLeftPower(int power) {
+void driveSpinLeftPower(int power) {
   driveMotors(-power, power);
 }
 
-void spinRightPower(int power) {
+void driveSpinRightPower(int power) {
   driveMotors(power, -power);
 }
 
-void swingLeftPower(int power) {
+void driveSwingLeftPower(int power) {
   if(power > 0) {
     driveMotors(0, power);
   } else {
@@ -41,7 +53,7 @@ void swingLeftPower(int power) {
   }
 }
 
-void swingRightPower(int power) {
+void driveSwingRightPower(int power) {
   if(power > 0) {
     driveMotors(power, 0);
   } else {
@@ -64,13 +76,10 @@ void calculateDrive(int xAxis, int yAxis) {
 
   int leftVal = yAxis + xAxis;
   int rightVal = yAxis - xAxis;
-  int leftOverflow = 0;
-  int rightOverflow = 0;
-
 
   driveMotors(leftVal, rightVal);
 }
 
-void setDrivePower(int power) {
+void driveSetPower(int power) {
   drivePower = power;
 }
