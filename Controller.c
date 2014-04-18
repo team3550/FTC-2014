@@ -1,4 +1,5 @@
 #pragma systemFile
+#define _Controller_
 
 //========== includes ==========
 #include "JoystickDriver.c"

@@ -1,4 +1,5 @@
 #pragma systemFile
+#define _Gemini_Indicators_
 
 #include "drivers/hitechnic-superpro.h"
 

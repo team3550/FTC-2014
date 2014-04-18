@@ -1,4 +1,5 @@
 #pragma systemfile
+#define _Gemini_Flipper_
 
 //========== defines ==========
 #define Flipper servo6

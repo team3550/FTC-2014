@@ -1,4 +1,5 @@
 #pragma systemFile
+#define _Gemini_Spinner_
 
 //========== defines ==========
 #define Turntable servo4

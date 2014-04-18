@@ -1,4 +1,5 @@
 #pragma systemfile
+#define _Gemini_Hanging_
 
 #ifndef _Gemini_Drivetrain_
 #include "GeminiDrivetrain.c"

@@ -1,4 +1,5 @@
 #pragma systemFile
+#define _Gemini_Lift_
 
 //========== prototypes ==========
 void liftUpSpeed(int speed);
