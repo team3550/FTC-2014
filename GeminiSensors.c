@@ -1,4 +1,13 @@
+#pragma systemfile
+#define _Gemini_Sensors_
 
+//========== Defines ==========
+
+//========== Prototypes ==========
+
+//========== Variables ==========
+
+//========== Functions ==========
 
 /*//read accelerometer and detect collisions
 void accelerometerCallibrate() {
