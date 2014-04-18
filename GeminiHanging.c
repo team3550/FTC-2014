@@ -1,5 +1,9 @@
 #pragma systemfile
 
+#ifndef _Gemini_Drivetrain_
+#include "GeminiDrivetrain.c"
+#endif
+
 //========== defines ==========
 #define PTO     servo2
 #define Ratchet servo5

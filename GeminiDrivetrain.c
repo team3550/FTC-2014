@@ -1,4 +1,5 @@
 #pragma systemFile
+#define _Gemini_Drivetrain_
 
 //========== DEFINES ==========
 
