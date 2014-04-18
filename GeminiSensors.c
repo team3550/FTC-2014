@@ -13,10 +13,14 @@
 #include "drivers/lego-light.h"
 #endif
 
+#ifndef __LEGOUS_H__
+#include "drivers/lego-ultrasound.h"
+#endif
+
 //========== Defines ==========
 
 //========== Prototypes ==========
-word sensorsUltrasonicGetDistance();
+int sensorsUltrasonicGetDistance();
 
 word sensorsIRGetDirection();
 
@@ -25,11 +29,12 @@ void sensorsLightLightOn();
 void sensorsLightLightOff();
 
 //========== Variables ==========
-const tMUXSensor lightMUX = msensor_S3_4;
+const tMUXSensor lightMUX = msensor_S3_4; //TODO: update the sensor numbers
+const tMUXSensor sonarMUX = msensor_S3_1; //TODO: update the sensor numbers
 
 //========== Functions ==========
-word sensorsUltrasonicGetDistance() {
-
+int sensorsUltrasonicGetDistance() {
+  return USreadDist(sonarMUX);
 }
 
 word sensorsIRGetDirection() {
@@ -37,7 +42,7 @@ word sensorsIRGetDirection() {
 }
 
 word sensorsLightGetReflected() {
-  LSvalRaw(lightMUX);
+  return LSvalRaw(lightMUX);
 }
 
 void sensorsLightLightOn(){
