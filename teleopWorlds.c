@@ -120,5 +120,21 @@ task main()
       PlayImmediateTone(4186, 1);
     }
 
+    //========== EMERGENCY BACKUP FUNCTIONS!!! ==========
+      //dump block in flipper
+    if (ControllerButtonPressed(BUTTON_B, CONTROLLER_2)) {
+      flipperDump();
+    } else if (ControllerButtonReleased(BUTTON_B, CONTROLLER_2)) {
+      flipperStorage();
+    }
+
+      //trim bucket positions
+    if (ControllerButtonPressed(BUTTON_RB, CONTROLLER_2)) {
+      bucketTrimUp();
+    } else if (ControllerButtonPressed(BUTTON_RT, CONTROLLER_2)) {
+      bucketTrimDown();
+    }
+
+
   }
 }
