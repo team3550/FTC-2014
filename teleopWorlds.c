@@ -24,16 +24,17 @@
 #include "GeminiSpinner.c"
 #include "GeminiFlipper.c"
 #include "GeminiHanging.c"
-#include "GeminiIndicators.c"
+//#include "GeminiIndicators.c"
 
 void initializeRobot()
 {
   bFloatDuringInactiveMotorPWM = false;
+  driveInitialize();
   bucketInitialize();
   spinnerInitialize();
   flipperInitialize();
   hangingInitialize();
-  IndicatorsInitialize();
+  //indicatorsInitialize();
   return;
 }
 
@@ -51,9 +52,9 @@ task main()
     calculateDrive(joystick.joy1_x1, joystick.joy1_y1);
 
     if (ControllerButtonPressed(BUTTON_LB, CONTROLLER_1)) {
-      setDrivePower(30);
+      driveSetPower(30);
     } else if (ControllerButtonReleased(BUTTON_LB, CONTROLLER_1)) {
-      setDrivePower(100);
+      driveSetPower(100);
     }
 
     //========== handle lift ==========
@@ -72,6 +73,46 @@ task main()
       bucketIncrementState();
     } else if (ControllerButtonPressed(BUTTON_RT, CONTROLLER_1)) {
       bucketDecrementState();
+    }
+
+    //========== handle spinner ==========
+    if (ControllerButtonPressed(BUTTON_START, CONTROLLER_1)) {
+      spinnerOut();
+    } else if (ControllerButtonPressed(BUTTON_BACK, CONTROLLER_1)) {
+      spinnerIn();
+    }
+
+    if (ControllerButtonPressed(BUTTON_A, CONTROLLER_1)) {
+      spinnerSpinCClockwise();
+    } else if (ControllerButtonReleased(BUTTON_A, CONTROLLER_1)) {
+      spinnerStop();
+    }
+
+    if (ControllerButtonPressed(BUTTON_B, CONTROLLER_1)) {
+      spinnerAlignCClockwise();
+    } else if (ControllerButtonReleased(BUTTON_B, CONTROLLER_1)) {
+      spinnerStop();
+    }
+
+    //========== handle PTO ==========
+    if (ControllerHatPressed(BUTTON_HAT_LEFT, CONTROLLER_1)) {
+      hangingPTOEngage();
+    }
+    if (ControllerHatPressed(BUTTON_HAT_RIGHT, CONTROLLER_1)) {
+      hangingPTODisengage();
+    }
+    if (ControllerButtonPressed(BUTTON_LT, CONTROLLER_1)) {
+      hangingPTOEngage();
+    } else if (ControllerButtonReleased(BUTTON_LT, CONTROLLER_1)) {
+      hangingPTODisengage();
+    }
+
+    //========= handle Ratchet ==========
+    if (ControllerHatPressed(BUTTON_HAT_UP, CONTROLLER_1)) {
+      hangingRatchetLock();
+    }
+    if (ControllerHatPressed(BUTTON_HAT_DOWN, CONTROLLER_1)) {
+      hangingRatchetUnlock();
     }
 
     //========== debug beep ==========
