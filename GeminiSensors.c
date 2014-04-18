@@ -11,6 +11,7 @@
 
 #ifndef __HTIRS2_H__
 #include "drivers/hitechnic-irseeker-v2.h"
+#endif
 
 #ifndef __LEGOLS_H__
 #include "drivers/lego-light.h"
