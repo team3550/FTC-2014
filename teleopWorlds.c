@@ -21,6 +21,8 @@
 #include "GeminiDrivetrain.c"
 #include "GeminiLift.c"
 #include "GeminiBucket.c"
+#include "GeminiFlipper.c"
+#include "GeminiHanging.c"
 
 void initializeRobot()
 {
