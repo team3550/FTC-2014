@@ -1,11 +1,12 @@
-//read accelerometer and detect collisions
 
+
+/*//read accelerometer and detect collisions
 void accelerometerCallibrate() {
 }
 
 bool detectCollision() {
   //detects a sudden change in the acceleration of the robot by comparing the derivative of the slope to a known spike value
-  /*
+
   if (deltaX || deltaY > spikeThreshold){
     return true;
   }
@@ -13,7 +14,7 @@ bool detectCollision() {
     return false;
   }
 }
-    
+
 
 void waitForCollision() {
   while(detectCollision() == false) {
@@ -23,7 +24,7 @@ void waitForCollision() {
 
 void onCollision(task thisTask) {
   //detects a collision using accelerometer, and starts a specified task
-  
+
   waitForCollision();
   StartTask(thisTask);
 }
@@ -45,14 +46,14 @@ float lineSensorReading() {
 
 int lineSensorColor() {
   //returns the best guess for the color beneath the sensor
-  
+
   /*
   whiteEstimate = kWhite - reading;
   greyEstimate = kGrey - reading;
   blackEstimate = kBlack - reading;
-  
+
   bestGuess = max( max(whiteEstimate, greyEstimate), blackEstimate);
-  
+
   if (bestGuess == whiteEstimate) {
     return white; }
   else if (bestGuess == greyEstimate) {
@@ -61,5 +62,5 @@ int lineSensorColor() {
     return black; }
   else {
     return error; }
-  
+
 }
