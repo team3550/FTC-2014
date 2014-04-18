@@ -45,7 +45,7 @@ void sensorsLightLightOn(){
 }
 
 void sensorsLightLightOff() {
-
+  LSSetInactive(lightMUX);
 }
 
 //=========== Old Stuff ==========
