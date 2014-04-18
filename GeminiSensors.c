@@ -1,6 +1,10 @@
 #pragma systemfile
 #define _Gemini_Sensors_
 
+#ifndef _Gemini_Gyro_
+#include "GeminiGyro.c"
+#endif
+
 //========== Defines ==========
 
 //========== Prototypes ==========
