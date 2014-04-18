@@ -21,6 +21,9 @@ void driveSetPower(int power);
 int drivePower = 100;
 
 //========== functions ==========
+void driveInitialize() {    //initialize the drivetrain
+  //do nothing
+}
 
 void driveMotors(int leftPower, int rightPower) {
   motor[LeftFront] = leftPower;
