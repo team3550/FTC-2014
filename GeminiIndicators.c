@@ -1,7 +1,9 @@
 #pragma systemFile
 #define _Gemini_Indicators_
 
+#ifndef __HTSPB_H__
 #include "drivers/hitechnic-superpro.h"
+#endif
 
 //========== defines ==========
 #define HTSPBDOutMask 0xFF  //TODO: update this number to have the appropriate DOut mask
