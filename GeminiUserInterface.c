@@ -7,6 +7,8 @@
 #define NXT_BUTTON_RIGHT  2
 #define NXT_BUTTON_BACK   2
 
+#define ARRAYLENGTH(a) (sizeof(a)/sizeof(a[0]))
+
 //========== prototypes ==========
 void promptTimeDelay(int maxTime = 30000);
 void promptAutonomousMode();
@@ -15,6 +17,12 @@ void promptAutonomousMode();
 long autoDelayTime = 0;
 long autoDelayTimeStep = 1000;
 string autoMode = "";
+string autoModeOptions[4] = {
+  "3 baskets",
+  "4 baskets",
+  "bridge left",
+  "bridge right",
+};
 
 //========== functions ==========
 void promptTimeDelay(int maxTime) {
