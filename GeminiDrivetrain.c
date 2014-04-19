@@ -37,6 +37,12 @@ void driveInitialize() {    //initialize the drivetrain
 }
 
 void driveMotors(int leftPower, int rightPower) {
+  if (leftPower > 100) { leftPower = 100; }       //coerce leftPower values
+  else if (leftPower < -100) { leftPower = -100; }
+
+  if (rightPower > 100) { rightPower = 100; }     //coerce rightPower values
+  else if (rightPower < -100) { rightPower = -100; }
+
   motor[LeftFront] = leftPower;
   motor[LeftBack] = leftPower;
   motor[RightFront] = rightPower;
