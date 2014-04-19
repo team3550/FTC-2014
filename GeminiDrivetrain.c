@@ -23,7 +23,8 @@ void driveSpinRightPower(int power);
 void driveSwingLeftPower(int power);
 void driveSwingRightPower(int power);
 
-void driveUltrasonicDistanceGyroHeadingHold(int power, int dist, bool stopWhenDone = true);
+void driveUltrasonicDistanceHeadingHold(int power, int dist, bool stopWhenDone = true);
+void driveSpinToHeading(float targetHeading);
 
 void calculateDrive(int xAxis, int yAxis);
 void driveSetPower(int power);
@@ -81,14 +82,14 @@ void driveSwingRightPower(int power) {
   }
 }
 
-void driveUltrasonicDistanceGyroHeadingHold(int power, int dist, bool stopWhenDone) {
-  if (!isGyroIntegrateTaskRunning) {
+void driveUltrasonicDistanceHeadingHold(int power, int dist, bool stopWhenDone) {
+  if (isGyroIntegrateTaskRunning != true) {
     sensorsGyroStartIntegrateTask();
   }
 
   bool stopLoop = false;
   float headingToHold = sensorsGyroGetHeading();
-  while (!stopLoop) {
+  while (stopLoop != true) {
 	  sensorsGyroIntegrate();                   //update current heading
 	  float headingError = sensorsGyroGetHeading() - headingToHold; //calculate how far the robot is off
 
@@ -97,12 +98,44 @@ void driveUltrasonicDistanceGyroHeadingHold(int power, int dist, bool stopWhenDo
 	  driveMotors(powerLeft, powerRight);
 
 	  if (power > 0) {
-	    stopLoop = (sensorsUltrasonicGetDistance() > dist);
+	    stopLoop = (sensorsUltrasonicGetDistance() > dist); //robot is driving forward
 	  } else {
-	    stopLoop = (sensorsUltrasonicGetDistance() < dist);
+	    stopLoop = (sensorsUltrasonicGetDistance() < dist); //robot is driving backwards
 	  }
   }
 
+  if (stopWhenDone) {
+    driveStop();
+  }
+}
+
+void driveSpinToHeading(float targetHeading) {  //-values are clockwise, +values are cclockwise
+  if (isGyroIntegrateTaskRunning != true) {
+    sensorsGyroStartIntegrateTask();
+  }
+
+  int direction = targetHeading - sensorsGyroGetHeading();
+  bool stopLoop = false;
+  while (stopLoop != true) {      //TODO: add code to move motors when less sleepy
+    sensorsGyroIntegrate();
+    if (direction > 0) {  //rotate left
+      stopLoop = ((targetHeading - sensorsGyroGetHeading()) > 0);
+    } else {              //rotate right
+      stopLoop = ((targetHeading - sensorsGyroGetHeading()) < 0);
+    }
+  }
+  driveStop();
+
+  stopLoop = false;
+  while (stopLoop != true) {      //TODO: add code to move motors when less sleepy
+    sensorsGyroIntegrate();
+    if (direction > 0) {  //rotate left
+      stopLoop = ((targetHeading - sensorsGyroGetHeading()) > 0);
+    } else {              //rotate right
+      stopLoop = ((targetHeading - sensorsGyroGetHeading()) < 0);
+    }
+  }
+  driveStop();
 }
 
 void calculateDrive(int xAxis, int yAxis) {
