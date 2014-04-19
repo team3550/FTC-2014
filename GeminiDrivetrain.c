@@ -1,7 +1,16 @@
 #pragma systemFile
 #define _Gemini_Drivetrain_
 
+#ifndef _Gemini_Gyro_
+#include "GeminiGyro.c"
+#endif
+
+#ifndef _Gemini_Sensors_
+#include "GeminiSensors.c"
+#endif
+
 //========== DEFINES ==========
+#define Kp_hdghold 4
 
 //========== prototypes ==========
 void driveInitialize();
@@ -13,6 +22,8 @@ void driveSpinLeftPower(int power);
 void driveSpinRightPower(int power);
 void driveSwingLeftPower(int power);
 void driveSwingRightPower(int power);
+
+void driveUltrasonicDistanceGyroHeadingHold(int power, int dist, bool stopWhenDone = true);
 
 void calculateDrive(int xAxis, int yAxis);
 void driveSetPower(int power);
@@ -62,6 +73,30 @@ void driveSwingRightPower(int power) {
   } else {
     driveMotors(0, power);
   }
+}
+
+void driveUltrasonicDistanceGyroHeadingHold(int power, int dist, bool stopWhenDone) {
+  if (!isGyroIntegrateTaskRunning) {
+    sensorsGyroStartIntegrateTask();
+  }
+
+  bool stopLoop = false;
+  float headingToHold = sensorsGyroGetHeading();
+  while (!stopLoop) {
+	  sensorsGyroIntegrate();                   //update current heading
+	  float headingError = sensorsGyroGetHeading() - headingToHold; //calculate how far the robot is off
+
+	  int powerLeft = power + (headingError*Kp_hdghold);  //P term loop for heading
+ 	  int powerRight = power - (headingError*Kp_hdghold); //hold
+	  driveMotors(powerLeft, powerRight);
+
+	  if (power > 0) {
+	    stopLoop = (sensorsUltrasonicGetDistance() > dist);
+	  } else {
+	    stopLoop = (sensorsUltrasonicGetDistance() < dist);
+	  }
+  }
+
 }
 
 void calculateDrive(int xAxis, int yAxis) {
